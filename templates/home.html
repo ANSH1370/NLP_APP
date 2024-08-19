@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP | Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #6e8efb, #9b59b6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            animation: fadeIn 1.5s ease-in-out;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .module-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, #6e8efb, #9b59b6);
+            z-index: -1;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            border-radius: inherit;
+        }
+
+        .module-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .module-card h2 {
+            color: #6e8efb;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-card p {
+            color: #555;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-card a {
+            display: inline-block;
+            background-color: #6e8efb;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-card a:hover {
+            background-color: #5a77d8;
+            transform: translateY(-3px);
+        }
+
+        /* Blurred and disabled module */
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .blurred::before {
+            opacity: 0.3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #6e8efb;
+            color: white;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to NLP APP</h1>
+    </header>
+    <div class="container">
+        <div class="intro">
+            <p>Explore a suite of NLP tools designed to enhance your text processing capabilities. Choose a module to get started!</p>
+        </div>
+        <div class="modules">
+            <div class="module-card">
+                <h2>Text Sentiment Analysis</h2>
+                <p>Analyze the sentiment of your text data, whether it's positive, negative, or neutral.</p>
+                <a href="/text_sentiment_analysis">Explore</a>
+            </div>
+            <div class="module-card">
+                <h2>Entity Recognition</h2>
+                <p>Identify and classify named entities in your text such as names, dates, and locations.</p>
+                <a href="/ner">Explore</a>
+            </div>
+            <div class="module-card">
+                <h2>Parts of Speech Tagging</h2>
+                <p>Translate text between different languages with ease.</p>
+                <a href="/POS_tagging">Explore</a>
+            </div>
+            <div class="module-card blurred">
+                <h2>NLP using DL</h2>
+                <p>This is a Captivate Module which will work on complex neural network behind it</p>
+                <a href="classification.html">Explore</a>
+            </div>
+            <div class="module-card blurred">
+                <h2>NLP using AI</h2>
+                <p>This is a Module which will work with human intelligence </p>
+                <a href="classification.html">Explore</a>
+            </div>
+            <div class="module-card blurred">
+                <h2>NLP using CV</h2>
+                <p>This Module will gives user experience with images</p>
+                <a href="classification.html">Explore</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 NLP APP. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
