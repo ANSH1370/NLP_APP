@@ -70,7 +70,7 @@ def before_request():
 def text_sentiment_analysis():
     return render_template('sentiment.html')
 
-@app.route('/sentimentation',methods=['post'])
+@app.route('/sentimentation',methods=['post','get'])
 def sentimentation():
     text = request.form.get('text')
     sw = stopwords.words('english')
