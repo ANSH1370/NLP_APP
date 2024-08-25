@@ -2,6 +2,7 @@ spacy
 numpy
 pandas
 scikit-learn
+Jinja2
 flask
-os
+gunicorn
 nltk
