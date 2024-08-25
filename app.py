@@ -127,4 +127,6 @@ def ner_results():
         l.append((ent,spacy.explain(ent.label_)))
     return render_template('NER_output.html',ner_tags = l)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
