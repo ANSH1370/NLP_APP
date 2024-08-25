@@ -16,8 +16,8 @@ db_obj = Database()
 
 app.secret_key = os.urandom(24)
 
-tfidf = pickle.load(open('New_TfidVectorizer_2.pkl', 'rb'))
-model = pickle.load(open('New_NLP_Model.pkl', 'rb'))
+tfidf = pickle.load(open('Newest_TfidVectorizer_2.pkl', 'rb'))
+model = pickle.load(open('Newest_NLP_Model.pkl', 'rb'))
 
 @app.route('/')
 def main():
