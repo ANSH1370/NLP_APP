@@ -70,7 +70,7 @@ def before_request():
 def text_sentiment_analysis():
     return render_template('sentiment.html')
 
-@app.route('/sentimentation',methods=['post','get'])
+@app.route('/sentimentation',methods=['POST','GET'])
 def sentimentation():
     text = request.form.get('text')
     sw = stopwords.words('english')
@@ -102,7 +102,7 @@ def sentimentation():
 def POS_tagging():
     return render_template('POS.html')
 
-@app.route('/tagging',methods=['post'])
+@app.route('/tagging',methods=['POST'])
 def tagging():
     text = request.form.get('text')
     result = ''
