@@ -80,6 +80,10 @@ def sentimentation():
     except LookupError:
         nltk.download('stopwords')
         sw = stopwords.words('english')
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
     ps = PorterStemmer()
 
     def remove_stopwords(text):
@@ -93,12 +97,21 @@ def sentimentation():
         for i in tokens:
             stemed_list.append(ps.stem(i))
         return ' '.join(stemed_list)
-    text = remove_stopwords(text)
-    text = stem_text(text)
-    text = [text]
+    # text = remove_stopwords(text)
+    # text = stem_text(text)
+    # text = [text]
 
-    vector_inputs = tfidf.transform(text)
-    result = model.predict(vector_inputs)
+    # vector_inputs = tfidf.transform(text)
+    # result = model.predict(vector_inputs)
+    try:
+        text = remove_stopwords(text)
+        text = stem_text(text)
+        text = [text]
+        vector_inputs = tfidf.transform(text)
+        result = model.predict(vector_inputs)
+    except Exception as e:
+        print(f"Error in text processing or model prediction: {e}")
+        return render_template('sentiment.html', message='An error occurred during processing.')
     if result[0] == 0:
         return render_template('sentiment.html',message='Negative')
     else:
