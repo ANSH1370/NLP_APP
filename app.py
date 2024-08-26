@@ -1,3 +1,14 @@
+import nltk
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+    
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
 import pickle
@@ -9,17 +20,9 @@ from gensim.utils import simple_preprocess
 from nltk import sent_tokenize
 from nltk.stem.porter import PorterStemmer
 import spacy
-import nltk
 import os
 
-nltk.download('punkt')
 
-# Ensure 'stopwords' is downloaded
-try:
-    sw = stopwords.words('english')
-except LookupError:
-    nltk.download('stopwords')
-    sw = stopwords.words('english')
 
 app = Flask(__name__)
 db_obj = Database()
@@ -101,7 +104,6 @@ def sentimentation():
         text = remove_stopwords(text)
         text = stem_text(text)
         text = [text]
-        nltk.download('punkt')
         vector_inputs = tfidf.transform(text)
         result = model.predict(vector_inputs)
     except Exception as e:
