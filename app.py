@@ -12,6 +12,11 @@ import spacy
 import nltk
 import os
 
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
 app = Flask(__name__)
 db_obj = Database()
 
@@ -80,10 +85,6 @@ def sentimentation():
     except LookupError:
         nltk.download('stopwords')
         sw = stopwords.words('english')
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        nltk.download('punkt')
     ps = PorterStemmer()
 
     def remove_stopwords(text):
