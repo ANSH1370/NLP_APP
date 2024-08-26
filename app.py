@@ -9,6 +9,7 @@ from gensim.utils import simple_preprocess
 from nltk import sent_tokenize
 from nltk.stem.porter import PorterStemmer
 import spacy
+import nltk
 import os
 
 app = Flask(__name__)
@@ -70,10 +71,15 @@ def before_request():
 def text_sentiment_analysis():
     return render_template('sentiment.html')
 
-@app.route('/sentimentation',methods=['POST','GET'])
+@app.route('/sentimentation',methods=['POST'])
 def sentimentation():
     text = request.form.get('text')
-    sw = stopwords.words('english')
+    #sw = stopwords.words('english')
+    try:
+        sw = stopwords.words('english')
+    except LookupError:
+        nltk.download('stopwords')
+        sw = stopwords.words('english')
     ps = PorterStemmer()
 
     def remove_stopwords(text):
