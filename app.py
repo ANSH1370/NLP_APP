@@ -12,11 +12,7 @@ import spacy
 import nltk
 import os
 
-# Ensure 'punkt' is downloaded
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+nltk.download('punkt')
 
 # Ensure 'stopwords' is downloaded
 try:
