@@ -2,14 +2,12 @@ import nltk
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
-    nltk.download('punkt')
+    nltk.download('punkt',download_dir='/content/nltk_data/')
 
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
     nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
     
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
