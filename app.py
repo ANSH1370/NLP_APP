@@ -8,6 +8,8 @@ try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
     nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
     
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
