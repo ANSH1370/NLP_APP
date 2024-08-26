@@ -123,8 +123,12 @@ def ner_results():
         text = request.form.get('text')
         if not text:
             raise ValueError("No text provided for NER.")
+        try:
+            nlp = spacy.load('en_core_web_sm')
+        except OSError:
+            spacy.cli.download('en_core_web_sm')
+            nlp = spacy.load('en_core_web_sm')
 
-        nlp = spacy.load('en_core_web_sm')
         doc = nlp(text)
         l = []
         for ent in doc.ents:
@@ -134,7 +138,6 @@ def ner_results():
     except Exception as e:
         app.logger.error(f"Error in NER processing: {e}")
         return render_template('NER.html', error="An error occurred during NER processing. Please try again.")
-
 if __name__ == "__main__":
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
