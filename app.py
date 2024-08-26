@@ -11,12 +11,12 @@ except LookupError:
     nltk.download('punkt_tab', download_dir=nltk_data_path)
     
 
-# Additional setup code for stopwords
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords', download_dir=nltk_data_path)
-    sw = stopwords.words('english')
+# # Additional setup code for stopwords
+# try:
+#     nltk.data.find('corpora/stopwords')
+# except LookupError:
+#     nltk.download('stopwords', download_dir=nltk_data_path)
+#     sw = stopwords.words('english')
 
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
@@ -95,7 +95,13 @@ def text_sentiment_analysis():
 @app.route('/sentimentation', methods=['POST'])
 def sentimentation():
     text = request.form.get('text')
+    try:
+        sw = stopwords.words('english')
+    except LookupError:
+        nltk.download('stopwords')
+        sw = stopwords.words('english')
     ps = PorterStemmer()
+    # ps = PorterStemmer()
 
     def remove_stopwords(text):
         tokens = word_tokenize(text)
