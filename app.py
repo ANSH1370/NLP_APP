@@ -1,14 +1,21 @@
+
 import nltk
+
+nltk_data_path = '/opt/render/nltk_data'
+nltk.data.path.append(nltk_data_path)
+
+# Ensure the 'punkt' tokenizer is downloaded
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
-    nltk.download('punkt',download_dir='/opt/render/nltk_data')
+    nltk.download('punkt', download_dir=nltk_data_path)
 
+# Additional setup code for stopwords
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
-    nltk.download('stopwords')
-    
+    nltk.download('stopwords', download_dir=nltk_data_path)
+
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
 import pickle
