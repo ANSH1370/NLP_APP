@@ -97,10 +97,11 @@ def sentimentation():
             stemmed_list.append(ps.stem(i))
         return ' '.join(stemmed_list)
 
-    try:
+    
         text = remove_stopwords(text)
         text = stem_text(text)
         text = [text]
+    try:
         vector_inputs = tfidf.transform(text)
         result = model.predict(vector_inputs)
     except Exception as e:
