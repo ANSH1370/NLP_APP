@@ -97,12 +97,12 @@ def sentimentation():
             stemmed_list.append(ps.stem(i))
         return ' '.join(stemmed_list)
 
-    
+    try:
         text = remove_stopwords(text)
         text = stem_text(text)
         text = [text]
+        nltk.download('punkt')
         vector_inputs = tfidf.transform(text)
-    try:
         result = model.predict(vector_inputs)
     except Exception as e:
         print(f"Error in text processing or model prediction: {e}")
