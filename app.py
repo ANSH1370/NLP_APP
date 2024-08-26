@@ -9,12 +9,14 @@ try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt_tab', download_dir=nltk_data_path)
+    
 
 # Additional setup code for stopwords
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
     nltk.download('stopwords', download_dir=nltk_data_path)
+    sw = stopwords.words('english')
 
 from flask import Flask, render_template, request, redirect, session, g
 from mydb import Database
