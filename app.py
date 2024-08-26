@@ -117,15 +117,23 @@ def tagging():
 def ner():
     return render_template('NER.html')
 
-@app.route('/ner_results',methods = ['post'])
+@app.route('/ner_results', methods=['POST'])
 def ner_results():
-    text = request.form.get('text')
-    nlp = spacy.load('en_core_web_sm')
-    doc = nlp(text)
-    l=[]
-    for ent in doc.ents:
-        l.append((ent,spacy.explain(ent.label_)))
-    return render_template('NER_output.html',ner_tags = l)
+    try:
+        text = request.form.get('text')
+        if not text:
+            raise ValueError("No text provided for NER.")
+
+        nlp = spacy.load('en_core_web_sm')
+        doc = nlp(text)
+        l = []
+        for ent in doc.ents:
+            l.append((ent, spacy.explain(ent.label_)))
+
+        return render_template('NER_output.html', ner_tags=l)
+    except Exception as e:
+        app.logger.error(f"Error in NER processing: {e}")
+        return render_template('NER.html', error="An error occurred during NER processing. Please try again.")
 
 if __name__ == "__main__":
     from waitress import serve
