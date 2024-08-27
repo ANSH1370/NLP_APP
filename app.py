@@ -44,7 +44,7 @@ model = pickle.load(open('Newest1_NLP_Model.pkl', 'rb'))
 @app.route('/')
 def main():
     session.pop('user', None)
-    return render_template('login.html')
+    return render_template('home.html')
 
 @app.route('/register')
 def register():
